@@ -1,0 +1,200 @@
+/**
+ * OAOA NEO-BRUTALIST DESIGN SYSTEM & UI JAVASCRIPT FRAMEWORK
+ * Interactive Component Handlers, Modals, Tabs, and Utilities
+ * Version: 1.0.0
+ */
+
+// Escape HTML utility
+export function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// Modal dialog builder
+export function openModal({ title, body, footer, wide, onClose }) {
+  const backdrop = document.createElement('div');
+  backdrop.className = 'modal-backdrop';
+  backdrop.setAttribute('role', 'dialog');
+  backdrop.setAttribute('aria-modal', 'true');
+
+  backdrop.innerHTML = `
+    <div class="modal-panel ${wide ? 'wide' : ''}">
+      <div class="modal-header">
+        <h3 class="panel-title" style="font-size: 1rem;">${escapeHtml(title || '')}</h3>
+        <button type="button" class="btn-ghost btn-sm" data-close>✕</button>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer ${footer ? '' : 'hidden'}"></div>
+    </div>
+  `;
+
+  const bodyEl = backdrop.querySelector('.modal-body');
+  const footEl = backdrop.querySelector('.modal-footer');
+
+  if (typeof body === 'string') bodyEl.innerHTML = body;
+  else if (body) bodyEl.appendChild(body);
+
+  if (footer) {
+    if (typeof footer === 'string') footEl.innerHTML = footer;
+    else footEl.appendChild(footer);
+  }
+
+  const close = () => {
+    backdrop.remove();
+    document.removeEventListener('keydown', onKey);
+    onClose?.();
+  };
+
+  const onKey = (e) => {
+    if (e.key === 'Escape') close();
+  };
+
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) close();
+  });
+
+  backdrop.querySelector('[data-close]').addEventListener('click', close);
+  document.addEventListener('keydown', onKey);
+  document.body.appendChild(backdrop);
+
+  return { backdrop, bodyEl, footEl, close };
+}
+
+// Confirm dialog promise
+export function confirmDialog(message, { title = 'Confirm', confirmLabel = 'Confirm', danger = false } = {}) {
+  return new Promise((resolve) => {
+    let settled = false;
+    const done = (value) => {
+      if (settled) return;
+      settled = true;
+      resolve(value);
+    };
+
+    const footer = `
+      <button type="button" class="btn-secondary" data-cancel>Cancel</button>
+      <button type="button" class="${danger ? 'btn-danger' : 'btn-primary'}" data-ok>${escapeHtml(confirmLabel)}</button>
+    `;
+
+    const modal = openModal({
+      title,
+      body: `<p style="margin:0">${escapeHtml(message)}</p>`,
+      footer,
+      onClose: () => done(false),
+    });
+
+    modal.footEl.querySelector('[data-cancel]').onclick = () => {
+      done(false);
+      modal.close();
+    };
+
+    modal.footEl.querySelector('[data-ok]').onclick = () => {
+      done(true);
+      modal.close();
+    };
+  });
+}
+
+// Dropdown binder
+export function bindDropdowns(root = document) {
+  const closeAll = () => {
+    document.querySelectorAll('.dropdown-menu').forEach((menu) => {
+      menu.hidden = true;
+      menu.style.position = '';
+      menu.style.top = '';
+      menu.style.right = '';
+      menu.style.left = '';
+      menu.previousElementSibling?.setAttribute('aria-expanded', 'false');
+    });
+  };
+
+  const place = (btn, menu) => {
+    const r = btn.getBoundingClientRect();
+    menu.style.position = 'fixed';
+    menu.style.zIndex = '1000';
+    menu.style.top = `${Math.round(r.bottom + 2)}px`;
+    menu.style.right = `${Math.round(window.innerWidth - r.right)}px`;
+    menu.style.left = 'auto';
+  };
+
+  root.querySelectorAll('[data-menu-toggle]').forEach((btn) => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const menu = btn.nextElementSibling;
+      if (!menu) return;
+      const willOpen = menu.hidden;
+      closeAll();
+      if (willOpen) {
+        menu.hidden = false;
+        btn.setAttribute('aria-expanded', 'true');
+        place(btn, menu);
+      }
+    };
+  });
+
+  const onDoc = (e) => {
+    if (e.target.closest('[data-menu-toggle]')) return;
+    closeAll();
+  };
+  const onScroll = () => closeAll();
+
+  document.addEventListener('click', onDoc);
+  document.addEventListener('scroll', onScroll, true);
+  window.addEventListener('resize', onScroll);
+}
+
+// Tab switcher binder
+export function bindTabs(container) {
+  const tabs = container.querySelectorAll('[data-tab-target]');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = tab.getAttribute('data-tab-target');
+      const group = tab.getAttribute('data-tab-group') || 'default';
+
+      // Deactivate sister tabs
+      container.querySelectorAll(`[data-tab-group="${group}"]`).forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      // Hide sister panels
+      document.querySelectorAll(`[data-tab-panel-group="${group}"]`).forEach((p) => (p.style.display = 'none'));
+      const targetPanel = document.getElementById(targetId);
+      if (targetPanel) targetPanel.style.display = 'block';
+    });
+  });
+}
+
+// Code copier utility
+export function bindCodeCopiers(root = document) {
+  root.querySelectorAll('[data-copy-target]').forEach((btn) => {
+    btn.onclick = async () => {
+      const targetId = btn.getAttribute('data-copy-target');
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      const code = target.innerText;
+      try {
+        await navigator.clipboard.writeText(code);
+        const originalText = btn.innerText;
+        btn.innerText = 'COPIED!';
+        btn.classList.add('btn-primary');
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.classList.remove('btn-primary');
+        }, 1800);
+      } catch (err) {
+        console.error('Failed to copy', err);
+      }
+    };
+  });
+}
+
+// Auto-init on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  bindDropdowns();
+  bindTabs(document);
+  bindCodeCopiers();
+});

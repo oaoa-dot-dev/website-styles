@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OAOA Neo-Brutalist Design System & UI Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="framework.css">
+  <style>
+    /* Documentation-specific styles */
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: calc(100vh - 58px);
+    }
+
+    @media (max-width: 900px) {
+      .docs-layout {
+        grid-template-columns: 1fr;
+      }
+      .docs-sidebar {
+        display: none;
+      }
+    }
+
+    .docs-sidebar {
+      border-right: 1px solid var(--border);
+      background: var(--bg-wash);
+      padding: 1.25rem 0.75rem;
+      position: sticky;
+      top: 0;
+      height: calc(100vh - 58px);
+      overflow-y: auto;
+    }
+
+    .docs-sidebar-title {
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      padding: 0.5rem 0.65rem;
+      margin-top: 0.75rem;
+    }
+
+    .docs-nav-link {
+      display: block;
+      padding: 0.4rem 0.65rem;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: 1px solid transparent;
+      margin-bottom: 2px;
+      transition: all 0.1s;
+    }
+
+    .docs-nav-link:hover,
+    .docs-nav-link.active {
+      background: #fff;
+      border-color: #000;
+      box-shadow: 2px 2px 0 #000;
+    }
+
+    .docs-main {
+      padding: 2rem;
+      max-width: 1100px;
+    }
+
+    .demo-box {
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 1.5rem;
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .demo-label {
+      position: absolute;
+      top: -10px;
+      left: 14px;
+      background: #000;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 2px 6px;
+    }
+
+    .code-box {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 9px;
+      padding: 3px 8px;
+    }
+
+    .token-swatch {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 1px solid #000;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    .section-anchor {
+      scroll-margin-top: 2rem;
+      margin-bottom: 2.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" style="background:#000; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:900; font-size:16px;">⊞</div>
+      <div class="brand-lockup">
+        <span class="brand-name">NEO-BRUTALIST UI</span>
+        <span class="brand-by">STYLE GUIDE & COMPONENT LIBRARY</span>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <span class="topbar-session">v1.0.0</span>
+      <a href="#starter" class="btn-primary btn-sm">Get Starter Code</a>
+    </div>
+  </header>
+
+  <!-- Top Horizontal Navigation Tabs Bar -->
+  <nav class="tabs" id="main-tabs">
+    <a href="#overview" class="tab active">Overview</a>
+    <a href="#nav-tabs" class="tab">Tabs & Nav</a>
+    <a href="#typography" class="tab">Typography</a>
+    <a href="#buttons" class="tab">Buttons</a>
+    <a href="#forms" class="tab">Forms</a>
+    <a href="#badges" class="tab">Badges</a>
+    <a href="#panels" class="tab">Panels & Stats</a>
+    <a href="#tables" class="tab">Data Tables</a>
+    <a href="#feedback" class="tab">Alerts</a>
+    <a href="#modals" class="tab">Modals</a>
+    <a href="#chat" class="tab">Chat & Terminal</a>
+    <a href="#dropdowns" class="tab">Dropdowns</a>
+    <a href="#auth" class="tab">Auth / Login</a>
+    <a href="#starter" class="tab">Starter Template</a>
+  </nav>
+
+  <div class="docs-layout">
+    
+    <!-- Sidebar Navigation -->
+    <nav class="docs-sidebar">
+      <div class="docs-sidebar-title">Foundation</div>
+      <a href="#overview" class="docs-nav-link">01. Overview & Tokens</a>
+      <a href="#typography" class="docs-nav-link">02. Typography</a>
+      
+      <div class="docs-sidebar-title">Navigation & Layout</div>
+      <a href="#nav-tabs" class="docs-nav-link active">03. Tabs & Navigation</a>
+      
+      <div class="docs-sidebar-title">Components</div>
+      <a href="#buttons" class="docs-nav-link">04. Buttons & Actions</a>
+      <a href="#forms" class="docs-nav-link">05. Form Controls</a>
+      <a href="#badges" class="docs-nav-link">06. Status Pills & Badges</a>
+      <a href="#panels" class="docs-nav-link">07. Panels & Stat Grids</a>
+      <a href="#tables" class="docs-nav-link">08. Data Tables</a>
+      <a href="#feedback" class="docs-nav-link">09. Feedback & Alerts</a>
+      <a href="#modals" class="docs-nav-link">10. Modals & Dialogs</a>
+      <a href="#chat" class="docs-nav-link">11. Chat & Log Streams</a>
+      <a href="#dropdowns" class="docs-nav-link">12. Dropdown Menus</a>
+      <a href="#auth" class="docs-nav-link">13. Auth / Login Card</a>
+      
+      <div class="docs-sidebar-title">Templates</div>
+      <a href="#starter" class="docs-nav-link">14. Starter Template</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="docs-main">
+
+      <!-- 1. OVERVIEW & DESIGN TOKENS -->
+      <section id="overview" class="section-anchor">
+        <h1 class="page-title">01. Design Tokens & Philosophy</h1>
+        <p class="muted">
+          The OAOA Neo-Brutalist Design System is engineered for high utility, maximum legible contrast, sharp 1px borders, hard 4px drop-shadows, zero corner-radii, and unified monospace typography.
+        </p>
+
+        <div class="panel" style="margin-bottom:1.5rem">
+          <div class="section-header">
+            <h2 class="panel-title">Core Tokens (:root)</h2>
+          </div>
+          <div class="table-wrap" style="border:0">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Token Variable</th>
+                  <th>Value</th>
+                  <th>Visual Reference</th>
+                  <th>Usage Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mono"><strong>--bg</strong></td>
+                  <td class="mono muted">#ffffff</td>
+                  <td><span class="token-swatch" style="background:#ffffff"></span> Surface White</td>
+                  <td>Base page & card backgrounds</td>
+                </tr>
+                <tr>
+                  <td class="mono"><strong>--bg-code / --bg-dark</strong></td>
+                  <td class="mono muted">#0c0f14 / #000000</td>
+                  <td><span class="token-swatch" style="background:#0c0f14"></span> Deep Dark</td>
+                  <td>Console, logs, dark terminal blocks</td>
+                </tr>
+                <tr>
+                  <td class="mono"><strong>--border</strong></td>
+                  <td class="mono muted">#000000</td>
+                  <td><span class="token-swatch" style="background:#000000"></span> Solid Black (1px)</td>
+                  <td>Standard borders on all boxes/inputs</td>
+                </tr>
+                <tr>
+                  <td class="mono"><strong>--shadow</strong></td>
+                  <td class="mono muted">4px 4px 0 #000000</td>
+                  <td><span style="display:inline-block; width:16px; height:16px; border:1px solid #000; box-shadow:3px 3px 0 #000"></span> Hard Offset</td>
+                  <td>Hover states, modals, active focus</td>
+                </tr>
+                <tr>
+                  <td class="mono"><strong>--font / --mono</strong></td>
+                  <td class="mono muted">'IBM Plex Mono', monospace</td>
+                  <td class="mono">Aa Bb 123</td>
+                  <td>Unified monospace typography everywhere</td>
+                </tr>
+                <tr>
+                  <td class="mono"><strong>--success</strong></td>
+                  <td class="mono muted">#15803d</td>
+                  <td><span class="token-swatch" style="background:#15803d"></span> Emerald</td>
+                  <td>Status OK, connected, verified</td>
+                </tr>
+                <tr>
+                  <td class="mono"><strong>--warning</strong></td>
+                  <td class="mono muted">#ca8a04</td>
+                  <td><span class="token-swatch" style="background:#ca8a04"></span> Amber</td>
+                  <td>Pending, queued, requires auth</td>
+                </tr>
+                <tr>
+                  <td class="mono"><strong>--danger</strong></td>
+                  <td class="mono muted">#b91c1c</td>
+                  <td><span class="token-swatch" style="background:#b91c1c"></span> Crimson</td>
+                  <td>Errors, destructive actions, revoke</td>
+                </tr>
+                <tr>
+                  <td class="mono"><strong>--info</strong></td>
+                  <td class="mono muted">#0369a1</td>
+                  <td><span class="token-swatch" style="background:#0369a1"></span> Sky Blue</td>
+                  <td>Informational badges & categories</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- 2. TYPOGRAPHY -->
+      <section id="typography" class="section-anchor">
+        <h1 class="page-title">02. Typography</h1>
+        <p class="muted">Hierarchy is achieved through font weight (900/700/500), tracking/letter-spacing, and uppercase text transforms.</p>
+
+        <div class="demo-box">
+          <span class="demo-label">Live Preview</span>
+          <h1 class="page-title" style="margin-bottom:0.5rem">PAGE TITLE (.page-title)</h1>
+          <h2 class="panel-title" style="margin-bottom:0.5rem">PANEL TITLE (.panel-title)</h2>
+          <span class="field-label">FIELD LABEL (.field-label)</span>
+          <p>Standard paragraph text with high legibility. Links appear with a <a href="#typography">crisp underline</a>.</p>
+          <p class="muted">Muted secondary annotation (.muted) for supporting metadata.</p>
+          <p class="dim">Dim text (.dim) for minor subtle hints.</p>
+          <div>
+            Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> to open command palette.
+          </div>
+        </div>
+
+        <div class="code-box">
+          <button class="btn-secondary btn-sm copy-btn" data-copy-target="code-typography">Copy HTML</button>
+          <pre class="pre" id="code-typography">&lt;h1 class="page-title"&gt;Intercepted Messages&lt;/h1&gt;
+&lt;h2 class="panel-title"&gt;Configuration Section&lt;/h2&gt;
+&lt;span class="field-label"&gt;Telegram Phone Number&lt;/span&gt;
+&lt;p class="muted"&gt;Secondary metadata label&lt;/p&gt;
+&lt;kbd&gt;ESC&lt;/kbd&gt;</pre>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- 3. NAVIGATION, TABS & TOOLBARS -->
+      <section id="nav-tabs" class="section-anchor">
+        <h1 class="page-title">03. Navigation, Tabs & Toolbars</h1>
+        <p class="muted">
+          Top horizontal tab bars (<code>.tabs</code> & <code>.tab</code>), segmented sub-page switchers, filter toolbars, and responsive headers form the primary navigation hierarchy.
+        </p>
+
+        <!-- Primary Topbar Tabs Example -->
+        <div class="demo-box" style="padding-top:1.75rem">
+          <span class="demo-label">Primary Navigation Tabs (.tabs & .tab)</span>
+          <p class="muted" style="font-size:12px; margin-bottom:0.5rem">Standard application navigation bar placed directly under the topbar header:</p>
+          <nav class="tabs" style="padding:0.5rem; margin-bottom:1rem; border:1px solid #000">
+            <a href="javascript:void(0)" class="tab active">Dashboard</a>
+            <a href="javascript:void(0)" class="tab">Channels</a>
+            <a href="javascript:void(0)" class="tab">Messages</a>
+            <a href="javascript:void(0)" class="tab">Sessions</a>
+            <a href="javascript:void(0)" class="tab">Files</a>
+            <a href="javascript:void(0)" class="tab">Workers</a>
+            <a href="javascript:void(0)" class="tab">Logs</a>
+            <a href="javascript:void(0)" class="tab">Settings</a>
+            <a href="javascript:void(0)" class="tab">System</a>
+          </nav>
+        </div>
+
+        <!-- Interactive Sub-page Segmented Tab Switcher -->
+        <div class="demo-box" style="padding-top:1.75rem; margin-top:1rem">
+          <span class="demo-label">Interactive Segmented Tabs & Content Panes</span>
+          <p class="muted" style="font-size:12px; margin-bottom:0.5rem">Click any tab below to switch live content panels via <code>data-tab-target</code>:</p>
+          
+          <div class="panel">
+            <div class="tabs" id="demo-sub-tabs" style="border-bottom:1px solid #000; padding:0.4rem 0.6rem">
+              <button type="button" class="tab active" data-tab-target="tab-pane-1" data-tab-group="demo-group">Interception Rules</button>
+              <button type="button" class="tab" data-tab-target="tab-pane-2" data-tab-group="demo-group">Translation Engine</button>
+              <button type="button" class="tab" data-tab-target="tab-pane-3" data-tab-group="demo-group">Storage Limits</button>
+            </div>
+            
+            <div class="section-body">
+              <div id="tab-pane-1" data-tab-panel-group="demo-group">
+                <h3 class="panel-title" style="margin-bottom:0.5rem">Tab 1: Interception Rules</h3>
+                <p style="font-size:13px; margin:0">Configure keywords, regular expressions, and channel inclusion filters for incoming message streams.</p>
+              </div>
+              <div id="tab-pane-2" data-tab-panel-group="demo-group" style="display:none">
+                <h3 class="panel-title" style="margin-bottom:0.5rem">Tab 2: Translation Engine Settings</h3>
+                <p style="font-size:13px; margin:0">Select default model endpoints (Ollama native, OpenAI API, local llama.cpp) and target translation languages.</p>
+              </div>
+              <div id="tab-pane-3" data-tab-panel-group="demo-group" style="display:none">
+                <h3 class="panel-title" style="margin-bottom:0.5rem">Tab 3: Storage Limits & Media</h3>
+                <p style="font-size:13px; margin:0">Set per-channel max file size thresholds (MB) and attachment retention policies.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Bar & Toolbar Layout -->
+        <div class="demo-box" style="padding-top:1.75rem; margin-top:1rem">
+          <span class="demo-label">Toolbar & Filter Bar (.toolbar & .filter-bar)</span>
+          <div class="toolbar" style="margin:0">
+            <h2 class="panel-title" style="font-size:1rem; margin:0">Monitored Channels</h2>
+            <div class="filter-bar">
+              <input class="input-compact" placeholder="Search channels…" style="width:11rem" />
+              <select class="input-compact">
+                <option value="">All Health Statuses</option>
+                <option value="Healthy">Healthy</option>
+                <option value="Warning">Warning</option>
+              </select>
+              <button type="button" class="btn-secondary btn-sm">Filter</button>
+              <button type="button" class="btn-primary btn-sm">+ Add Channel</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <button class="btn-secondary btn-sm copy-btn" data-copy-target="code-nav-tabs">Copy HTML & JS</button>
+          <pre class="pre" id="code-nav-tabs">&lt;!-- Top Navigation Bar --&gt;
+&lt;nav class="tabs"&gt;
+  &lt;a href="/Dashboard" class="tab active"&gt;Dashboard&lt;/a&gt;
+  &lt;a href="/Channels" class="tab"&gt;Channels&lt;/a&gt;
+  &lt;a href="/Messages" class="tab"&gt;Messages&lt;/a&gt;
+  &lt;a href="/Sessions" class="tab"&gt;Sessions&lt;/a&gt;
+  &lt;a href="/Settings" class="tab"&gt;Settings&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;!-- Toolbar with Filter Bar --&gt;
+&lt;div class="toolbar"&gt;
+  &lt;h1 class="page-title"&gt;Messages&lt;/h1&gt;
+  &lt;div class="filter-bar"&gt;
+    &lt;input class="input-compact" placeholder="Search..." /&gt;
+    &lt;select class="input-compact"&gt;
+      &lt;option&gt;All Categories&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;button class="btn-secondary btn-sm"&gt;Search&lt;/button&gt;
+    &lt;button class="btn-primary btn-sm"&gt;+ Add&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- 4. BUTTONS & ACTIONS -->
+      <section id="buttons" class="section-anchor">
+        <h1 class="page-title">04. Buttons & Actions</h1>
+        <p class="muted">Buttons feature bold uppercase labels, solid borders, and tactile <code>transform: translate(-2px, -2px)</code> with hard <code>4px 4px 0 #000</code> shadows on hover.</p>
+
+        <div class="demo-box">
+          <span class="demo-label">Button Variants</span>
+          <div class="row" style="margin-bottom:1rem">
+            <button type="button" class="btn-primary">Primary Button</button>
+            <button type="button" class="btn-secondary">Secondary Button</button>
+            <button type="button" class="btn-danger">Danger Button</button>
+            <button type="button" class="btn-ghost">Ghost Button</button>
+            <button type="button" class="btn-ghost danger">Ghost Danger</button>
+          </div>
+          
+          <div class="field-label" style="margin-top:1.5rem">Size Modifiers & States</div>
+          <div class="row">
+            <button type="button" class="btn-primary btn-sm">Primary Small</button>
+            <button type="button" class="btn-secondary btn-sm">Secondary Small</button>
+            <button type="button" class="btn-danger btn-sm">Danger Small</button>
+            <button type="button" class="btn-secondary btn-sm btn-queued">Queued State</button>
+            <button type="button" class="btn-primary btn-sm" disabled>Disabled State</button>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <button class="btn-secondary btn-sm copy-btn" data-copy-target="code-buttons">Copy HTML</button>
+          <pre class="pre" id="code-buttons">&lt;button type="button" class="btn-primary"&gt;Save Changes&lt;/button&gt;
+&lt;button type="button" class="btn-secondary"&gt;Cancel&lt;/button&gt;
+&lt;button type="button" class="btn-danger"&gt;Delete Session&lt;/button&gt;
+&lt;button type="button" class="btn-ghost"&gt;Details&lt;/button&gt;
+&lt;button type="button" class="btn-secondary btn-sm"&gt;Small Action&lt;/button&gt;</pre>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- 5. FORM CONTROLS & INPUTS -->
+      <section id="forms" class="section-anchor">
+        <h1 class="page-title">05. Form Controls & Inputs</h1>
+        <p class="muted">Forms use clean square inputs with 1px black borders, distinct focus rings with <code>3px 3px 0 #000</code> shadow, and responsive column grid helpers.</p>
+
+        <div class="demo-box">
+          <span class="demo-label">Form Elements</span>
+          <form class="form-grid" onsubmit="event.preventDefault(); alert('Form submitted!');">
+            <div class="form-row cols-2">
+              <label class="stack" style="gap:0">
+                <span class="field-label">Session Name</span>
+                <input class="input" placeholder="e.g. Primary Interceptor" required />
+              </label>
+              <label class="stack" style="gap:0">
+                <span class="field-label">Target Channel</span>
+                <select class="input">
+                  <option>Select a channel…</option>
+                  <option>@news_feed_global</option>
+                  <option>@intel_broadcast</option>
+                  <option>@crypto_signals</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="form-row cols-3">
+              <label class="stack" style="gap:0">
+                <span class="field-label">Compact Input</span>
+                <input class="input-compact" placeholder="Search filter…" />
+              </label>
+              <label class="stack" style="gap:0">
+                <span class="field-label">Max Size (MB)</span>
+                <input class="input-compact" type="number" value="10" />
+              </label>
+              <label class="stack" style="gap:0">
+                <span class="field-label">Status Filter</span>
+                <select class="input-compact">
+                  <option>All Statuses</option>
+                  <option>Active</option>
+                  <option>Paused</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="stack" style="gap:0">
+              <span class="field-label">System Prompt / Instructions</span>
+              <textarea class="textarea" rows="3" placeholder="Enter translation or extraction rules…"></textarea>
+            </label>
+
+            <div class="row" style="gap:1.5rem">
+              <label class="checkbox-label">
+                <input type="checkbox" checked />
+                <span>Auto-download photos & video</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" />
+                <span>Auto-translate to English</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="r1" checked />
+                <span>Option A</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="r1" />
+                <span>Option B</span>
+              </label>
+            </div>
+
+            <div class="row" style="justify-content:flex-end; gap:0.5rem; margin-top:0.5rem">
+              <button type="reset" class="btn-secondary">Reset</button>
+              <button type="submit" class="btn-primary">Submit Form</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="code-box">
+          <button class="btn-secondary btn-sm copy-btn" data-copy-target="code-forms">Copy HTML</button>
+          <pre class="pre" id="code-forms">&lt;div class="form-row cols-2"&gt;
+  &lt;label class="stack" style="gap:0"&gt;
+    &lt;span class="field-label"&gt;Phone Number&lt;/span&gt;
+    &lt;input class="input" placeholder="+614..." required /&gt;
+  &lt;/label&gt;
+  &lt;label class="stack" style="gap:0"&gt;
+    &lt;span class="field-label"&gt;Media Mode&lt;/span&gt;
+    &lt;select class="input"&gt;
+      &lt;option&gt;Photos Only&lt;/option&gt;
+      &lt;option&gt;All Media&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/label&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- 6. STATUS PILLS & BADGES -->
+      <section id="badges" class="section-anchor">
+        <h1 class="page-title">06. Status Pills & Badges</h1>
+        <p class="muted">Status indicators provide high-contrast semantic states with crisp 1px borders.</p>
+
+        <div class="demo-box">
+          <span class="demo-label">Status Pills</span>
+          <div class="row" style="gap:0.75rem">
+            <span class="status-pill status-ok">Connected</span>
+            <span class="status-pill status-warn">Connecting</span>
+            <span class="status-pill status-danger">Requires Auth</span>
+            <span class="status-pill status-info">Intelligence</span>
+            <span class="status-pill status-pill-on">Active Flag</span>
+            <span class="status-pill">Default Pill</span>
+            <span class="lang-badge">EN</span>
+            <span class="cat-tag">INTEL</span>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <button class="btn-secondary btn-sm copy-btn" data-copy-target="code-badges">Copy HTML</button>
+          <pre class="pre" id="code-badges">&lt;span class="status-pill status-ok"&gt;Connected&lt;/span&gt;
+&lt;span class="status-pill status-warn"&gt;Pending&lt;/span&gt;
+&lt;span class="status-pill status-danger"&gt;Error&lt;/span&gt;
+&lt;span class="status-pill status-info"&gt;Category&lt;/span&gt;
+&lt;span class="lang-badge"&gt;EN&lt;/span&gt;</pre>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- 7. PANELS, CARDS & STAT GRIDS -->
+      <section id="panels" class="section-anchor">
+        <h1 class="page-title">07. Panels & Stat Grids</h1>
+        <p class="muted">Stat grids utilize 1px gap backgrounds to produce sharp grid dividers with large bold figures.</p>
+
+        <div class="demo-box">
+          <span class="demo-label">Stat Grid Preview</span>
+          <div class="stat-grid" style="margin-bottom:1.5rem">
+            <div class="stat-cell">
+              <div class="stat-label">Total Channels</div>
+              <div class="stat-value">128</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-label">Intercepted Msgs</div>
+              <div class="stat-value">49,204</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-label">Translated Msgs</div>
+              <div class="stat-value">38,110</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-label">Files Captured</div>
+              <div class="stat-value">1,842</div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="panel">
+              <div class="section-header">
+                <h2 class="panel-title">Active Worker Status</h2>
+                <span class="status-pill status-ok">3 Running</span>
+              </div>
+              <div class="section-body">
+                <p style="font-size:12px" class="muted">Background processors are operating within normal parameters.</p>
+                <div class="progress-track" style="margin-top:0.5rem">
+                  <div class="progress-fill" style="width:75%"></div>
+                </div>
+                <div class="row between" style="font-size:10px; margin-top:4px">
+                  <span class="muted">Translation Pipeline</span>
+                  <span class="mono">75% (750/1000)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="section-header">
+                <h2 class="panel-title">System Information</h2>
+              </div>
+              <div class="section-body">
+                <div class="stack" style="gap:0.4rem; font-size:12px">
+                  <div class="row between">
+                    <span class="muted">Database:</span>
+                    <span class="mono">PostgreSQL 16 (Healthy)</span>
+                  </div>
+                  <div class="row between">
+                    <span class="muted">Translation Provider:</span>
+                    <span class="mono">Ollama (Native)</span>
+                  </div>
+                  <div class="row between">
+                    <span class="muted">Memory Cache:</span>
+                    <span class="mono">Redis Cluster</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <button class="btn-secondary btn-sm copy-btn" data-copy-target="code-panels">Copy HTML</button>
+          <pre class="pre" id="code-panels">&lt;div class="stat-grid"&gt;
+  &lt;div class="stat-cell"&gt;
+    &lt;div class="stat-label"&gt;Active Channels&lt;/div&gt;
+    &lt;div class="stat-value"&gt;128&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="panel"&gt;
+  &lt;div class="section-header"&gt;
+    &lt;h2 class="panel-title"&gt;Section Title&lt;/h2&gt;
+  &lt;/div&gt;
+  &lt;div class="section-body"&gt;
+    Card Content...
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- 8. DATA TABLES & LISTS -->
+      <section id="tables" class="section-anchor">
+        <h1 class="page-title">08. Data Tables & Lists</h1>
+        <p class="muted">Tables support sticky headers, hover highlights, single-line text truncation with ellipsis, and clickable row modals.</p>
+
+        <div class="demo-box">
+          <span class="demo-label">Data Table</span>
+          <div class="toolbar" style="margin-bottom:0.5rem">
+            <div class="filter-bar">
+              <input class="input-compact" placeholder="Search rows…" style="width:12rem" />
+              <button class="btn-secondary btn-sm">Filter</button>
+            </div>
+            <button class="btn-primary btn-sm">+ Add Item</button>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Channel</th>
+                  <th>Category</th>
+                  <th>Message Preview</th>
+                  <th style="text-align:right">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="clickable" onclick="testRowClick('Ukraine Alert', 'Breaking: Humanitarian corridor established in southern sector.')">
+                  <td class="mono muted" style="font-size:11px; white-space:nowrap">08/17 10:45</td>
+                  <td><strong>@intel_feed</strong></td>
+                  <td><span class="status-pill status-info">Conflict</span></td>
+                  <td class="truncate" style="max-width:24rem"><span class="lang-badge">EN</span> Breaking: Humanitarian corridor established in southern sector.</td>
+                  <td style="text-align:right; white-space:nowrap">
+                    <button class="btn-ghost btn-sm">Details</button>
+                  </td>
+                </tr>
+                <tr class="clickable" onclick="testRowClick('Cyber Security', 'Patch released for zero-day vulnerability in infrastructure stack.')">
+                  <td class="mono muted" style="font-size:11px; white-space:nowrap">08/17 10:42</td>
+                  <td><strong>@sec_updates</strong></td>
+                  <td><span class="status-pill status-ok">Tech</span></td>
+                  <td class="truncate" style="max-width:24rem"><span class="lang-badge">EN</span> Patch released for zero-day vulnerability in infrastructure stack.</td>
+                  <td style="text-align:right; white-space:nowrap">
+                    <button class="btn-ghost btn-sm">Details</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="mono muted" style="font-size:11px; white-space:nowrap">08/17 10:38</td>
+                  <td><strong>@crypto_insider</strong></td>
+                  <td><span class="status-pill status-warn">Finance</span></td>
+                  <td class="truncate" style="max-width:24rem">Market analysis report uploaded (PDF 4.2 MB).</td>
+                  <td style="text-align:right; white-space:nowrap">
+                    <button class="btn-ghost btn-sm">Details</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="footer-count">
+            <span>Showing 3 of 49,204 records</span>
+            <div class="row">
+              <button class="btn-secondary btn-sm" disabled>Prev</button>
+              <span class="mono">1 / 1640</span>
+              <button class="btn-secondary btn-sm">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <button class="btn-secondary btn-sm copy-btn" data-copy-target="code-tables">Copy HTML</button>
+          <pre class="pre" id="code-tables">&lt;div class="table-wrap"&gt;
+  &lt;table class="data-table"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Timestamp&lt;/th&gt;
+        &lt;th&gt;Channel&lt;/th&gt;
+        &lt;th&gt;Text Preview&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr class="clickable"&gt;
+        &lt;td class="mono muted"&gt;10:45&lt;/td&gt;
+        &lt;td&gt;&lt;strong&gt;@channel&lt;/strong&gt;&lt;/td&gt;
+        &lt;td class="truncate" style="max-width:24rem"&gt;Long truncated message text...&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- 9. FEEDBACK & ALERTS -->
+      <section id="feedback" class="section-anchor">
+        <h1 class="page-title">09. Feedback & Alerts</h1>
+        <p class="muted">Callout banners for information, operations, and critical error messages.</p>
+
+        <div class="demo-box">
+          <span class="demo-label">Alert Boxes</span>
+          <div class="info-box" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap">
+            <span>Translating 142 messages remaining in queue.</span>
+            <button class="btn-secondary btn-sm">Pause Queue</button>
+          </div>
+
+          <div class="error-box">
+            [ERROR] Telegram connection timed out on session +61400000000. Re-authentication required.
+          </div>
+
+          <div class="empty">
+            No intercepted messages match your active filter criteria.
+          </div>
+        </div>
+
+        <div class="code-box">
+          <button class="btn-secondary btn-sm copy-btn" data-copy-target="code-feedback">Copy HTML</button>
+          <pre class="pre" id="code-feedback">&lt;div class="info-box"&gt;System operation in progress.&lt;/div&gt;
+&lt;div class="error-box"&gt;An error occurred.&lt;/div&gt;
+&lt;div class="empty"&gt;No records found.&lt;/div&gt;</pre>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- 10. MODALS & DIALOGS -->
+      <section id="modals" class="section-anchor">
+        <h1 class="page-title">10. Modals & Dialogs</h1>
+        <p class="muted">Modals feature heavy 4px solid drop shadows, crisp border headers, and backdrop dimming.</p>
+
+        <div class="demo-box">
+          <span class="demo-label">Interactive Playground</span>
+          <div class="row">
+            <button type="button" class="btn-primary" onclick="testStandardModal()">Open Standard Modal</button>
+            <button type="button" class="btn-danger" onclick="testConfirmDialog()">Open Danger Confirm Dialog</button>
+            <button type="button" class="btn-secondary" onclick="document.getElementById('demo-native-dialog').showModal()">Open Native &lt;dialog&gt;</button>
+          </div>
+        </div>
+
+        <!-- Native Dialog Example -->
+        <dialog id="demo-native-dialog" class="dialog-brutalist">
+          <div class="stack">
+            <div class="row between">
+              <h3 class="panel-title" style="font-size:1rem">Native Dialog Box</h3>
+              <button type="button" class="btn-ghost btn-sm" onclick="document.getElementById('demo-native-dialog').close()">✕</button>
+            </div>
+            <p style="font-size:13px">This is a native HTML5 <code>&lt;dialog class="dialog-brutalist"&gt;</code> element styled with neo-brutalist borders and drop-shadows.</p>
+            <label class="stack" style="gap:0">
+              <span class="field-label">Input Value</span>
+              <input class="input" placeholder="Type here…" />
+            </label>
+            <div class="row" style="justify-content:flex-end; gap:0.5rem; margin-top:0.5rem">
+              <button type="button" class="btn-secondary" onclick="document.getElementById('demo-native-dialog').close()">Close</button>
+              <button type="button" class="btn-primary" onclick="document.getElementById('demo-native-dialog').close()">Done</button>
+            </div>
+          </div>
+        </dialog>
+
+        <div class="code-box">
+          <button class="btn-secondary btn-sm copy-btn" data-copy-target="code-modals">Copy JS / HTML</button>
+          <pre class="pre" id="code-modals">// Import from framework.js
+import { openModal, confirmDialog } from './framework.js';
+
+// Open Modal:
+openModal({
+  title: 'Add New Record',
+  body: '&lt;input class="input" placeholder="Title" /&gt;',
+  footer: '&lt;button class="btn-primary"&gt;Save&lt;/button&gt;'
+});
+
+// Confirm Dialog:
+const confirmed = await confirmDialog('Are you sure you want to delete?', { danger: true });</pre>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- 11. CHAT & MESSAGE LOGS -->
+      <section id="chat" class="section-anchor">
+        <h1 class="page-title">11. Chat & Message Streams</h1>
+        <p class="muted">Terminal log stream and direct message bubble interfaces for live monitoring feeds.</p>
+
+        <div class="demo-box">
+          <span class="demo-label">Chat & Terminal View</span>
+          <div class="chat-shell">
+            <div class="chat-header">
+              <strong>Live Stream: @intel_global</strong>
+              <span class="status-pill status-ok" style="margin-left:auto">Listening</span>
+            </div>
+            <div class="chat-log">
+              <div class="msg-line"><span class="muted">[10:45:01]</span> <span class="chat-nick">&lt;System&gt;</span> Scrape worker synced channel metadata.</div>
+              <div class="msg-line"><span class="muted">[10:45:12]</span> <span class="chat-nick">&lt;Session_01&gt;</span> Intercepted message #49201 from @intel_global</div>
+              <div class="msg-line"><span class="muted">[10:45:14]</span> <span class="chat-via">Ollama-Native</span> Translation completed: "Alert: Satellite link calibrated."</div>
+              <div class="msg-line"><span class="muted">[10:45:20]</span> <span class="chat-nick">&lt;Classifier&gt;</span> Categorized as [MIL_INTEL] Relevance: Critical</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <button class="btn-secondary btn-sm copy-btn" data-copy-target="code-chat">Copy HTML</button>
+          <pre class="pre" id="code-chat">&lt;div class="chat-shell"&gt;
+  &lt;div class="chat-header"&gt;Live Stream&lt;/div&gt;
+  &lt;div class="chat-log"&gt;
+    &lt;div class="msg-line"&gt;&lt;span class="chat-nick"&gt;&amp;lt;Bot&amp;gt;&lt;/span&gt; Message text&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- 12. DROPDOWN MENUS -->
+      <section id="dropdowns" class="section-anchor">
+        <h1 class="page-title">12. Dropdown Menus</h1>
+        <p class="muted">Compact action trigger menus with keyboard support and document click-off auto-close.</p>
+
+        <div class="demo-box">
+          <span class="demo-label">Interactive Dropdown</span>
+          <div class="row">
+            <div class="dropdown">
+              <button type="button" class="btn-secondary btn-sm" data-menu-toggle aria-haspopup="true">Actions ▾</button>
+              <div class="dropdown-menu" hidden>
+                <button type="button" class="dropdown-item" onclick="alert('Scrape triggered')">Start Scrape</button>
+                <button type="button" class="dropdown-item" onclick="alert('Categorise triggered')">Categorise</button>
+                <button type="button" class="dropdown-item" onclick="alert('Export JSON triggered')">Export JSON</button>
+                <button type="button" class="dropdown-item danger" onclick="alert('Delete triggered')">Delete Channel</button>
+              </div>
+            </div>
+
+            <div class="dropdown">
+              <button type="button" class="btn-primary btn-sm" data-menu-toggle aria-haspopup="true">Export Data ▾</button>
+              <div class="dropdown-menu" hidden>
+                <a href="#" class="dropdown-item">Export as CSV</a>
+                <a href="#" class="dropdown-item">Export as SQLite</a>
+                <a href="#" class="dropdown-item">Export as JSONL</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <button class="btn-secondary btn-sm copy-btn" data-copy-target="code-dropdowns">Copy HTML</button>
+          <pre class="pre" id="code-dropdowns">&lt;div class="dropdown"&gt;
+  &lt;button type="button" class="btn-secondary btn-sm" data-menu-toggle&gt;Actions ▾&lt;/button&gt;
+  &lt;div class="dropdown-menu" hidden&gt;
+    &lt;button class="dropdown-item"&gt;Option 1&lt;/button&gt;
+    &lt;button class="dropdown-item danger"&gt;Delete&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- 13. AUTH & LOGIN VIEW -->
+      <section id="auth" class="section-anchor">
+        <h1 class="page-title">13. Auth & Login View</h1>
+        <p class="muted">Centered authentication card with brutalist brand lockup, error notification box, and input fields.</p>
+
+        <div class="demo-box" style="background:var(--bg-wash)">
+          <span class="demo-label">Login Card Preview</span>
+          <div style="max-width:400px; margin:0 auto">
+            <div class="login-card stack" style="background:#fff">
+              <div>
+                <div class="login-brand">
+                  <div class="brand-mark" style="background:#000; width:44px; height:44px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:900; font-size:22px;">⊞</div>
+                  <div class="brand-lockup">
+                    <h1 class="brand-name" style="font-size:1.6rem">Console.</h1>
+                    <span class="brand-by">by OAOA.DEV</span>
+                  </div>
+                </div>
+                <p class="muted" style="margin:0.5rem 0 0; font-size:0.875rem">Portal Authentication</p>
+              </div>
+
+              <label class="stack" style="gap:0.25rem">
+                <span class="field-label">Username</span>
+                <input class="input" type="text" value="webmaster" readonly />
+              </label>
+
+              <label class="stack" style="gap:0.25rem">
+                <span class="field-label">Password</span>
+                <input class="input" type="password" value="••••••••••••" readonly />
+              </label>
+
+              <button class="btn-primary" type="button" style="width:100%; margin-top:0.5rem" onclick="alert('Login demo clicked')">Sign In</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <button class="btn-secondary btn-sm copy-btn" data-copy-target="code-auth">Copy HTML</button>
+          <pre class="pre" id="code-auth">&lt;div class="login-wrap"&gt;
+  &lt;form class="login-card stack" method="post" action="/Auth/Login"&gt;
+    &lt;div class="login-brand"&gt;
+      &lt;img class="login-mark" src="/logo.svg" alt="" /&gt;
+      &lt;div class="brand-lockup"&gt;
+        &lt;h1 class="brand-name"&gt;MyApp&lt;/h1&gt;
+        &lt;span class="brand-by"&gt;by OAOA.DEV&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;label class="stack" style="gap:0.25rem"&gt;
+      &lt;span class="field-label"&gt;Username&lt;/span&gt;
+      &lt;input class="input" type="text" name="username" required /&gt;
+    &lt;/label&gt;
+    &lt;label class="stack" style="gap:0.25rem"&gt;
+      &lt;span class="field-label"&gt;Password&lt;/span&gt;
+      &lt;input class="input" type="password" name="password" required /&gt;
+    &lt;/label&gt;
+    &lt;button class="btn-primary" type="submit" style="width:100%"&gt;Sign In&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- 14. STARTER BOILERPLATE -->
+      <section id="starter" class="section-anchor">
+        <h1 class="page-title">14. Starter Template</h1>
+        <p class="muted">Copy and paste this minimal boilerplate into any new web project to instantly inherit the full design system.</p>
+
+        <div class="code-box">
+          <button class="btn-primary btn-sm copy-btn" data-copy-target="code-starter">Copy Entire Boilerplate</button>
+          <pre class="pre" id="code-starter">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;My Application&lt;/title&gt;
+  &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+  &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&amp;family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet"&gt;
+  &lt;link rel="stylesheet" href="./framework.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="shell"&gt;
+    &lt;!-- Top Navigation Bar --&gt;
+    &lt;header class="topbar"&gt;
+      &lt;div class="brand"&gt;
+        &lt;div class="brand-lockup"&gt;
+          &lt;span class="brand-name"&gt;APP NAME&lt;/span&gt;
+          &lt;span class="brand-by"&gt;by OAOA.DEV&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="topbar-actions"&gt;
+        &lt;span class="status-pill status-ok"&gt;Online&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Navigation Tabs --&gt;
+    &lt;nav class="tabs"&gt;
+      &lt;a href="#" class="tab active"&gt;Dashboard&lt;/a&gt;
+      &lt;a href="#" class="tab"&gt;Items&lt;/a&gt;
+      &lt;a href="#" class="tab"&gt;Settings&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;!-- Main Content Area --&gt;
+    &lt;main class="content"&gt;
+      &lt;div class="toolbar"&gt;
+        &lt;h1 class="page-title"&gt;Dashboard Overview&lt;/h1&gt;
+        &lt;button class="btn-primary"&gt;+ New Action&lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;div class="stat-grid" style="margin-bottom:1.5rem"&gt;
+        &lt;div class="stat-cell"&gt;
+          &lt;div class="stat-label"&gt;Total Items&lt;/div&gt;
+          &lt;div class="stat-value"&gt;1,240&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class="panel"&gt;
+        &lt;div class="section-header"&gt;
+          &lt;h2 class="panel-title"&gt;Active Records&lt;/h2&gt;
+        &lt;/div&gt;
+        &lt;div class="section-body"&gt;
+          &lt;p&gt;Your content goes here.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+  &lt;/div&gt;
+
+  &lt;script type="module" src="./framework.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script type="module" src="framework.js"></script>
+  <script type="module">
+    import { openModal, confirmDialog } from './framework.js';
+
+    window.testStandardModal = () => {
+      openModal({
+        title: 'Channel Settings Modal',
+        body: `
+          <div class="stack" style="gap:1rem">
+            <p class="muted" style="margin:0; font-size:12px">Configure automated interception rules for this channel.</p>
+            <label class="stack" style="gap:0.25rem">
+              <span class="field-label">Max Media Limit (MB)</span>
+              <input class="input" type="number" value="25" />
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" checked />
+              <span>Enable auto-categorization worker</span>
+            </label>
+          </div>
+        `,
+        footer: `
+          <button type="button" class="btn-secondary" data-close>Cancel</button>
+          <button type="button" class="btn-primary" onclick="alert('Saved!'); document.querySelector('.modal-backdrop')?.remove()">Save Settings</button>
+        `
+      });
+    };
+
+    window.testConfirmDialog = async () => {
+      const ok = await confirmDialog('Are you sure you want to permanently delete this session? This action cannot be undone.', {
+        title: 'Delete Session Confirmation',
+        confirmLabel: 'Delete Permanently',
+        danger: true
+      });
+      if (ok) alert('Action confirmed: Session deleted.');
+      else alert('Action cancelled.');
+    };
+
+    window.testRowClick = (title, text) => {
+      openModal({
+        title: 'Message Detail: ' + title,
+        body: `
+          <div class="stack" style="gap:0.75rem">
+            <div class="row">
+              <span class="status-pill status-info">Intercepted</span>
+              <span class="mono muted" style="font-size:11px">2026-08-17 10:45:00 UTC</span>
+            </div>
+            <pre class="pre" style="min-height:6rem">${text}</pre>
+          </div>
+        `,
+        footer: '<button class="btn-primary btn-sm" data-close>Close</button>'
+      });
+    };
+
+    // Active Tab & Nav Synchronization
+    const topTabs = document.querySelectorAll('#main-tabs .tab');
+    const sideLinks = document.querySelectorAll('.docs-sidebar .docs-nav-link');
+
+    function syncActiveNav(hash) {
+      if (!hash) return;
+      topTabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === hash));
+      sideLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === hash));
+    }
+
+    topTabs.forEach(t => t.addEventListener('click', () => syncActiveNav(t.getAttribute('href'))));
+    sideLinks.forEach(l => l.addEventListener('click', () => syncActiveNav(l.getAttribute('href'))));
+    window.addEventListener('hashchange', () => syncActiveNav(location.hash));
+    if (location.hash) syncActiveNav(location.hash);
+  </script>
+</body>
+</html>

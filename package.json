@@ -1,0 +1,43 @@
+{
+  "name": "@oaoa/style-framework",
+  "version": "1.0.0",
+  "description": "OAOA Neo-Brutalist Light Design System & UI Architecture",
+  "main": "dist/framework.js",
+  "module": "dist/framework.js",
+  "style": "dist/framework.css",
+  "exports": {
+    ".": {
+      "import": "./dist/framework.js",
+      "default": "./dist/framework.js"
+    },
+    "./css": "./dist/framework.css",
+    "./css/min": "./dist/framework.min.css",
+    "./js": "./dist/framework.js",
+    "./js/min": "./dist/framework.min.js",
+    "./framework.css": "./dist/framework.css",
+    "./framework.min.css": "./dist/framework.min.css",
+    "./framework.js": "./dist/framework.js"
+  },
+  "files": [
+    "dist",
+    "framework.css",
+    "framework.js",
+    "index.html",
+    "DESIGN_SYSTEM.md"
+  ],
+  "scripts": {
+    "build": "python3 scripts/build.py",
+    "serve": "python3 scripts/serve.py"
+  },
+  "keywords": [
+    "oaoa",
+    "design-system",
+    "neo-brutalism",
+    "css-framework",
+    "light-theme",
+    "monochrome",
+    "high-contrast"
+  ],
+  "author": "OAOA.DEV",
+  "license": "MIT"
+}
