@@ -1,0 +1,14 @@
+node_modules/
+.git/
+.github/
+scripts/
+src/
+Dockerfile
+nginx.conf
+package.json
+package-lock.json
+DESIGN_SYSTEM.md
+README.md
+framework.css
+framework.js
+index.html
