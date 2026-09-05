@@ -69,11 +69,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  max-height: 100vh;
-  max-height: 100dvh;
-  overflow: hidden;
+  min-height: 100%;
   font-family: var(--mono) !important;
   font-size: var(--font-ui-base);
   background: var(--bg);
@@ -237,6 +233,7 @@ kbd, .kbd {
 /* ==========================================================================
    4. LAYOUT & SHELL STRUCTURE
    ========================================================================== */
+body.shell,
 .shell {
   width: 100%;
   height: 100vh;
@@ -354,6 +351,131 @@ kbd, .kbd {
   border-color: #000;
   color: #000;
   background: var(--bg-wash);
+}
+
+/* Secondary Tabs & Sub-Navigation Bar (shaded slightly grey) */
+.tabs-secondary,
+.tabs.tabs-secondary,
+.tabs.secondary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-wash-strong);
+  flex-shrink: 0;
+}
+
+.tabs-secondary .tab,
+.tabs.tabs-secondary .tab,
+.tabs.secondary .tab,
+.tab-secondary {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.1s;
+}
+
+.tabs-secondary .tab:hover,
+.tabs.tabs-secondary .tab:hover,
+.tabs.secondary .tab:hover,
+.tab-secondary:hover {
+  border-color: #000;
+  color: #000;
+  background: #fff;
+  box-shadow: 1px 1px 0 #000;
+}
+
+.tabs-secondary .tab.active,
+.tabs.tabs-secondary .tab.active,
+.tabs.secondary .tab.active,
+.tab-secondary.active {
+  border-color: #000;
+  color: #000;
+  background: #fff;
+  box-shadow: 2px 2px 0 #000;
+  font-weight: 700;
+}
+
+.tabs-secondary.tabs-compact,
+.tabs-secondary.tabs-sm {
+  padding: 0.25rem 0.75rem;
+  gap: 0.25rem;
+}
+
+.tabs-secondary.tabs-compact .tab,
+.tabs-secondary.tabs-sm .tab {
+  font-size: 9px;
+  padding: 0.25rem 0.5rem;
+}
+
+.tabs-secondary .tabs-label,
+.tabs-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  margin-right: 0.5rem;
+  user-select: none;
+}
+
+.tabs-secondary .tab.tab-dark.active,
+.tabs-secondary.tabs-dark .tab.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.tabs-secondary.tabs-underline {
+  background: var(--bg-wash-strong);
+}
+
+.tabs-secondary.tabs-underline .tab {
+  border: 1px solid transparent;
+  border-bottom: 2px solid transparent;
+  box-shadow: none;
+}
+
+.tabs-secondary.tabs-underline .tab:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: transparent;
+  border-bottom-color: #000;
+  box-shadow: none;
+}
+
+.tabs-secondary.tabs-underline .tab.active {
+  background: #fff;
+  border-color: transparent;
+  border-bottom: 2px solid #000;
+  box-shadow: none;
+}
+
+/* Secondary Navbar / Sub-toolbar */
+.subnav,
+.navbar-secondary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.4rem 1rem;
+  background: var(--bg-wash-strong);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
 }
 
 .content {

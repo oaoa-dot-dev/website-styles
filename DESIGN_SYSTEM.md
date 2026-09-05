@@ -183,7 +183,9 @@ text-[10px] font-bold uppercase tracking-widest
 ┌─────────────────────────────────────────────┐
 │ Brand (italic UPPER)          actions/user  │  ← full width, border-b black
 ├─────────────────────────────────────────────┤
-│ TAB  TAB  TAB  TAB                          │  ← micro-caps
+│ TAB  TAB  TAB  TAB                          │  ← primary tabs (white)
+├─────────────────────────────────────────────┤
+│ SUB-NAV // TAB  TAB  TAB                    │  ← secondary tabs (shaded grey)
 ├─────────────────────────────────────────────┤
 │ PAGE TITLE (huge UPPER)                     │  ← optional; omit on editors
 ├─────────────────────────────────────────────┤
@@ -194,7 +196,8 @@ text-[10px] font-bold uppercase tracking-widest
 - Shell: `height: 100dvh`, column flex, `overflow: hidden`.
 - Content: `flex: 1; min-height: 0; overflow: auto`.
 - Top nav: white, `border-b border-black`; wordmark left; user/actions right.
-- **Tabs — bordered style (portal):** active `border border-black text-black`; idle `border-transparent text-gray-500`, hover black border.
+- **Tabs — bordered style (primary):** active `border border-black text-black`; idle `border-transparent text-gray-500`, hover black border.
+- **Tabs — secondary / sub-nav style (.tabs-secondary):** shaded slightly grey (`var(--bg-wash-strong)` / `#f3f4f6`), placed directly below a primary bar. Active tab lifts with crisp white fill (`#ffffff`), solid 1px border, and `box-shadow: 2px 2px 0 #000`.
 - **Tabs — underline style (section):** `border-b border-black`; active `border-b-2 border-black -mb-px`; idle muted.
 
 ### Page header block

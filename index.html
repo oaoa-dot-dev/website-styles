@@ -10,10 +10,25 @@
   <link rel="stylesheet" href="framework.css">
   <style>
     /* Documentation-specific styles */
+    body.docs-page {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    .docs-topbar {
+      flex-shrink: 0;
+    }
+
     .docs-layout {
       display: grid;
-      grid-template-columns: 240px 1fr;
-      min-height: calc(100vh - 58px);
+      grid-template-columns: 260px 1fr;
+      flex: 1 1 0%;
+      min-height: 0;
+      height: 100%;
+      overflow: hidden;
     }
 
     @media (max-width: 900px) {
@@ -23,16 +38,18 @@
       .docs-sidebar {
         display: none;
       }
+      .docs-main {
+        padding: 1.5rem 1rem 6rem;
+      }
     }
 
     .docs-sidebar {
       border-right: 1px solid var(--border);
       background: var(--bg-wash);
-      padding: 1.25rem 0.75rem;
-      position: sticky;
-      top: 0;
-      height: calc(100vh - 58px);
+      padding: 1.25rem 0.75rem 3rem;
+      height: 100%;
       overflow-y: auto;
+      flex-shrink: 0;
     }
 
     .docs-sidebar-title {
@@ -67,7 +84,14 @@
     }
 
     .docs-main {
-      padding: 2rem;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 2rem 2.5rem 8rem;
+      scroll-behavior: smooth;
+    }
+
+    .docs-main > * {
       max-width: 1100px;
     }
 
@@ -120,10 +144,10 @@
     }
   </style>
 </head>
-<body>
+<body class="shell docs-page">
 
   <!-- Top Bar -->
-  <header class="topbar">
+  <header class="topbar docs-topbar">
     <div class="brand">
       <div class="brand-mark" style="background:#000; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:900; font-size:16px;">⊞</div>
       <div class="brand-lockup">
@@ -137,11 +161,11 @@
     </div>
   </header>
 
-  <!-- Top Horizontal Navigation Tabs Bar -->
-  <nav class="tabs" id="main-tabs">
+  <!-- Top Horizontal Navigation Tabs Bar (Secondary Shaded Theme) -->
+  <nav class="tabs tabs-secondary docs-tabs" id="main-tabs">
     <a href="#overview" class="tab active">Overview</a>
-    <a href="#nav-tabs" class="tab">Tabs & Nav</a>
     <a href="#typography" class="tab">Typography</a>
+    <a href="#nav-tabs" class="tab">Tabs & Nav</a>
     <a href="#buttons" class="tab">Buttons</a>
     <a href="#forms" class="tab">Forms</a>
     <a href="#badges" class="tab">Badges</a>
@@ -160,11 +184,11 @@
     <!-- Sidebar Navigation -->
     <nav class="docs-sidebar">
       <div class="docs-sidebar-title">Foundation</div>
-      <a href="#overview" class="docs-nav-link">01. Overview & Tokens</a>
+      <a href="#overview" class="docs-nav-link active">01. Overview & Tokens</a>
       <a href="#typography" class="docs-nav-link">02. Typography</a>
       
       <div class="docs-sidebar-title">Navigation & Layout</div>
-      <a href="#nav-tabs" class="docs-nav-link active">03. Tabs & Navigation</a>
+      <a href="#nav-tabs" class="docs-nav-link">03. Tabs & Navigation</a>
       
       <div class="docs-sidebar-title">Components</div>
       <a href="#buttons" class="docs-nav-link">04. Buttons & Actions</a>
@@ -309,7 +333,7 @@
         <!-- Primary Topbar Tabs Example -->
         <div class="demo-box" style="padding-top:1.75rem">
           <span class="demo-label">Primary Navigation Tabs (.tabs & .tab)</span>
-          <p class="muted" style="font-size:12px; margin-bottom:0.5rem">Standard application navigation bar placed directly under the topbar header:</p>
+          <p class="muted" style="font-size:12px; margin-bottom:0.5rem">Standard pure white application navigation bar placed directly under the topbar header:</p>
           <nav class="tabs" style="padding:0.5rem; margin-bottom:1rem; border:1px solid #000">
             <a href="javascript:void(0)" class="tab active">Dashboard</a>
             <a href="javascript:void(0)" class="tab">Channels</a>
@@ -321,6 +345,43 @@
             <a href="javascript:void(0)" class="tab">Settings</a>
             <a href="javascript:void(0)" class="tab">System</a>
           </nav>
+        </div>
+
+        <!-- Secondary Sub-Navigation Tabs Example (Shaded Grey) -->
+        <div class="demo-box" style="padding-top:1.75rem; margin-top:1rem">
+          <span class="demo-label">Secondary Sub-Navigation Tabs (.tabs-secondary)</span>
+          <p class="muted" style="font-size:12px; margin-bottom:0.5rem">Secondary navigation bar shaded slightly grey (<code>--bg-wash-strong</code> / <code>#f3f4f6</code>) designed to sit directly below a primary bar with high contrast:</p>
+          <nav class="tabs tabs-secondary" style="margin-bottom:1rem; border:1px solid #000">
+            <span class="tabs-label">SUB-NAV //</span>
+            <a href="javascript:void(0)" class="tab active">Overview</a>
+            <a href="javascript:void(0)" class="tab">Realtime Feed</a>
+            <a href="javascript:void(0)" class="tab">Filtering Rules</a>
+            <a href="javascript:void(0)" class="tab">Exports & CSV</a>
+            <a href="javascript:void(0)" class="tab">Audit Log</a>
+          </nav>
+        </div>
+
+        <!-- Two-Tier Stacked Navigation Example -->
+        <div class="demo-box" style="padding-top:1.75rem; margin-top:1rem">
+          <span class="demo-label">Two-Tier Stacked Navigation Hierarchy</span>
+          <p class="muted" style="font-size:12px; margin-bottom:0.5rem">Primary bar (pure white) stacked directly above the secondary sub-nav bar (shaded grey) with seamless 1px boundary:</p>
+          <div style="border:1px solid #000; margin-bottom:1rem">
+            <!-- Tier 1: Primary Bar -->
+            <nav class="tabs" style="border-bottom:1px solid #000">
+              <a href="javascript:void(0)" class="tab">Operations</a>
+              <a href="javascript:void(0)" class="tab active">Intelligence</a>
+              <a href="javascript:void(0)" class="tab">Infrastructure</a>
+              <a href="javascript:void(0)" class="tab">Security</a>
+            </nav>
+            <!-- Tier 2: Secondary Bar (Shaded Grey) -->
+            <nav class="tabs tabs-secondary" style="border-bottom:0">
+              <span class="tabs-label">VIEW //</span>
+              <a href="javascript:void(0)" class="tab active">Live Intercepts</a>
+              <a href="javascript:void(0)" class="tab">Threat Entities</a>
+              <a href="javascript:void(0)" class="tab">Geo-Mapping</a>
+              <a href="javascript:void(0)" class="tab">Raw Telemetry</a>
+            </nav>
+          </div>
         </div>
 
         <!-- Interactive Sub-page Segmented Tab Switcher -->
@@ -372,14 +433,34 @@
 
         <div class="code-box">
           <button class="btn-secondary btn-sm copy-btn" data-copy-target="code-nav-tabs">Copy HTML & JS</button>
-          <pre class="pre" id="code-nav-tabs">&lt;!-- Top Navigation Bar --&gt;
+          <pre class="pre" id="code-nav-tabs">&lt;!-- Primary Navigation Bar (White Surface) --&gt;
 &lt;nav class="tabs"&gt;
-  &lt;a href="/Dashboard" class="tab active"&gt;Dashboard&lt;/a&gt;
-  &lt;a href="/Channels" class="tab"&gt;Channels&lt;/a&gt;
-  &lt;a href="/Messages" class="tab"&gt;Messages&lt;/a&gt;
-  &lt;a href="/Sessions" class="tab"&gt;Sessions&lt;/a&gt;
-  &lt;a href="/Settings" class="tab"&gt;Settings&lt;/a&gt;
+  &lt;a href="/dashboard" class="tab active"&gt;Dashboard&lt;/a&gt;
+  &lt;a href="/channels" class="tab"&gt;Channels&lt;/a&gt;
+  &lt;a href="/messages" class="tab"&gt;Messages&lt;/a&gt;
+  &lt;a href="/settings" class="tab"&gt;Settings&lt;/a&gt;
 &lt;/nav&gt;
+
+&lt;!-- Secondary Sub-Navigation Bar (Shaded Grey Surface) --&gt;
+&lt;nav class="tabs tabs-secondary"&gt;
+  &lt;span class="tabs-label"&gt;SUB-NAV //&lt;/span&gt;
+  &lt;a href="#overview" class="tab active"&gt;Overview&lt;/a&gt;
+  &lt;a href="#rules" class="tab"&gt;Rules&lt;/a&gt;
+  &lt;a href="#export" class="tab"&gt;Export&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;!-- Two-Tier Stacked Hierarchy --&gt;
+&lt;div class="nav-stack" style="border:1px solid #000"&gt;
+  &lt;nav class="tabs" style="border-bottom:1px solid #000"&gt;
+    &lt;a href="#primary1" class="tab active"&gt;Operations&lt;/a&gt;
+    &lt;a href="#primary2" class="tab"&gt;Intelligence&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;nav class="tabs tabs-secondary" style="border-bottom:0"&gt;
+    &lt;span class="tabs-label"&gt;VIEW //&lt;/span&gt;
+    &lt;a href="#sec1" class="tab active"&gt;Live Stream&lt;/a&gt;
+    &lt;a href="#sec2" class="tab"&gt;Telemetry&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/div&gt;
 
 &lt;!-- Toolbar with Filter Bar --&gt;
 &lt;div class="toolbar"&gt;
@@ -1090,21 +1171,100 @@ const confirmed = await confirmDialog('Are you sure you want to delete?', { dang
         footer: '<button class="btn-primary btn-sm" data-close>Close</button>'
       });
     };
+  </script>
 
-    // Active Tab & Nav Synchronization
+  <script>
+    // Active Tab & Nav Synchronization and Pane Scrolling
     const topTabs = document.querySelectorAll('#main-tabs .tab');
     const sideLinks = document.querySelectorAll('.docs-sidebar .docs-nav-link');
+    const docsMain = document.querySelector('.docs-main');
+    let isUserNavigating = false;
+    let navTimer = null;
 
     function syncActiveNav(hash) {
       if (!hash) return;
       topTabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === hash));
-      sideLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === hash));
+      sideLinks.forEach(l => {
+        const isMatch = l.getAttribute('href') === hash;
+        l.classList.toggle('active', isMatch);
+        if (isMatch) {
+          l.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+        }
+      });
     }
 
-    topTabs.forEach(t => t.addEventListener('click', () => syncActiveNav(t.getAttribute('href'))));
-    sideLinks.forEach(l => l.addEventListener('click', () => syncActiveNav(l.getAttribute('href'))));
-    window.addEventListener('hashchange', () => syncActiveNav(location.hash));
-    if (location.hash) syncActiveNav(location.hash);
+    function scrollToTarget(targetId, smooth = true) {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      isUserNavigating = true;
+      if (navTimer) clearTimeout(navTimer);
+      navTimer = setTimeout(() => { isUserNavigating = false; }, 800);
+
+      target.scrollIntoView({
+        behavior: smooth ? 'smooth' : 'auto',
+        block: 'start'
+      });
+    }
+
+    // Intercept in-page anchor clicks so the right pane (.docs-main) scrolls reliably
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (href && href.length > 1 && href.startsWith('#')) {
+        const targetId = href.slice(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          scrollToTarget(targetId, true);
+          if (history.pushState) {
+            history.pushState(null, '', href);
+          } else {
+            location.hash = href;
+          }
+          syncActiveNav(href);
+        }
+      }
+    });
+
+    window.addEventListener('popstate', () => {
+      if (location.hash) {
+        scrollToTarget(location.hash.slice(1), true);
+        syncActiveNav(location.hash);
+      }
+    });
+
+    // Auto-highlight active navigation items as user scrolls .docs-main
+    if ('IntersectionObserver' in window && docsMain) {
+      const sections = document.querySelectorAll('.docs-main .section-anchor');
+      const observer = new IntersectionObserver((entries) => {
+        if (isUserNavigating) return;
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            if (id) {
+              syncActiveNav('#' + id);
+            }
+          }
+        });
+      }, {
+        root: docsMain,
+        rootMargin: '-5% 0px -75% 0px',
+        threshold: 0
+      });
+
+      sections.forEach(sec => observer.observe(sec));
+    }
+
+    // Sync on initial load if hash is present
+    if (location.hash) {
+      syncActiveNav(location.hash);
+      scrollToTarget(location.hash.slice(1), false);
+      setTimeout(() => {
+        scrollToTarget(location.hash.slice(1), false);
+        syncActiveNav(location.hash);
+      }, 50);
+    }
   </script>
 </body>
 </html>
