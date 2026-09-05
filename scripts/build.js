@@ -97,6 +97,13 @@ function main() {
     console.log(`  ✓ Cloudflare _headers copied to dist/_headers`);
   }
 
+  const srcDir = path.join(ROOT_DIR, 'src');
+  if (fs.existsSync(srcDir)) {
+    fs.writeFileSync(path.join(srcDir, 'framework.css'), cssRaw);
+    fs.writeFileSync(path.join(srcDir, 'framework.js'), jsRaw);
+    console.log(`  ✓ Source assets mirrored to ${srcDir}`);
+  }
+
   console.log(`\nBuild complete. All dist files ready in:\n  ${DIST_DIR}\n`);
 }
 

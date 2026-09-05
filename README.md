@@ -44,7 +44,7 @@ Cloudflare Pages supports **multiple independent projects** on the same account 
    - Select the `oaoa-style-framework` repository.
 3. **Build & Output Settings**:
    - **Framework preset**: `None`
-   - **Build command**: `python3 scripts/build.py`
+   - **Build command**: `npm run build`
    - **Build output directory**: `dist`
 4. **Custom Domain**:
    - In your newly created Pages project, go to **Custom domains** → **Set up a custom domain**.
@@ -76,8 +76,10 @@ Cloudflare Pages supports **multiple independent projects** on the same account 
 │   ├── _headers                          (Cloudflare edge configuration)
 │   └── v1/                               (Version-pinned immutable assets)
 └── scripts/
-    ├── build.py            # Automated minification & compression builder
-    └── serve.py            # Local zero-dependency preview server
+    ├── build.js            # Node.js automated minification & compression builder (npm run build)
+    ├── build.py            # Python 3 fallback builder
+    ├── serve.js            # Node.js local preview server
+    └── serve.py            # Python 3 preview server
 ```
 
 ---

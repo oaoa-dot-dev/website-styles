@@ -26,10 +26,11 @@
     "DESIGN_SYSTEM.md"
   ],
   "scripts": {
-    "build": "node scripts/build.js 2>/dev/null || python3 scripts/build.py",
+    "build": "node scripts/build.js",
     "build:node": "node scripts/build.js",
     "build:py": "python3 scripts/build.py",
-    "serve": "python3 scripts/serve.py",
+    "serve": "node scripts/serve.js 2>/dev/null || python3 scripts/serve.py",
+    "start": "node scripts/serve.js 2>/dev/null || python3 scripts/serve.py",
     "deploy": "npx wrangler pages deploy dist",
     "preview": "npx wrangler pages dev dist"
   },
