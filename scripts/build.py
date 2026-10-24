@@ -141,6 +141,13 @@ def main():
         shutil.copy2(headers_path, DIST_DIR / "_headers")
         print(f"  ✓ Cloudflare _headers copied to dist/_headers")
 
+    # Mirror to src/ directory
+    src_dir = ROOT_DIR / "src"
+    if src_dir.exists():
+        (src_dir / "framework.css").write_text(css_raw, encoding="utf-8")
+        (src_dir / "framework.js").write_text(js_raw, encoding="utf-8")
+        print(f"  ✓ Source assets mirrored to {src_dir}")
+
     print("\nBuild complete. All dist files ready in:")
     print(f"  {DIST_DIR}\n")
 

@@ -243,6 +243,16 @@ Black 1px gutters via `gap-px bg-black border border-black`:
 1. Single title source.
 2. Optional filter bar above the table (bordered; filters left, primary action right).
 3. Full-width bordered table.
+4. **Column Header Dropdowns (Excel-Style):**
+   - Header cells (`<th>`) can host `.th-content` with a `.th-filter-btn` trigger.
+   - Dropdown menu (`.table-filter-menu`) features:
+     - Sort options (`Sort A → Z`, `Sort Z → A`, `Default Order`).
+     - Divider line (`.dropdown-divider`).
+     - Search filter input (`.table-filter-search-input`).
+     - Select All / Clear action links (`.table-filter-link`).
+     - Scrollable checkbox item list (`.table-filter-list`).
+     - Footer buttons (Clear / Apply).
+   - Filter state: when a column is filtered, the header button receives `.filtered` / `[data-filtered="true"]` with an inverted black style and amber indicator dot.
 
 ### Detail / editor (full-height)
 

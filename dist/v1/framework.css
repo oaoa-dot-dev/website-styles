@@ -859,6 +859,330 @@ button:disabled {
   box-shadow: 0 1px 0 #000;
 }
 
+/* Table Header Cell Layout & Filter Controls */
+.th-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.th-content.inline {
+  display: inline-flex;
+  justify-content: flex-start;
+  gap: 0.35rem;
+  width: auto;
+}
+
+.th-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.th-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--border-light);
+  background: #fff;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1;
+  transition: all 0.1s;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.th-filter-btn:hover {
+  border-color: #000;
+  color: #000;
+  background: var(--bg-wash-strong);
+  box-shadow: 1px 1px 0 #000;
+}
+
+.th-filter-btn:active,
+.th-filter-btn.active,
+.th-filter-btn[aria-expanded="true"] {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+  box-shadow: 1px 1px 0 #000;
+}
+
+.th-filter-btn.filtered,
+.th-filter-btn[data-filtered="true"] {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+  box-shadow: 1px 1px 0 #000;
+  position: relative;
+}
+
+.th-filter-btn.filtered::after,
+.th-filter-btn[data-filtered="true"]::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 5px;
+  height: 5px;
+  background: #f59e0b;
+  border: 1px solid #000;
+}
+
+.th-filter-icon {
+  width: 10px;
+  height: 10px;
+  fill: currentColor;
+  display: block;
+}
+
+/* Excel-Style Column Header Filter Dropdown Menu */
+.table-filter-menu {
+  width: 240px;
+  min-width: 240px;
+  max-width: 280px;
+  padding: 0;
+  background: #fff;
+  border: 1px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #000;
+  text-transform: none;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.table-filter-header {
+  padding: 6px 10px;
+  background: var(--bg-wash-strong);
+  border-bottom: 1px solid var(--border);
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-filter-header .col-name {
+  color: #000;
+  font-weight: 900;
+}
+
+.table-filter-sort {
+  padding: 4px 0;
+}
+
+.filter-sort-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 6px 10px;
+  border: 0;
+  background: transparent;
+  color: #000;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.filter-sort-item:hover {
+  background: var(--bg-wash-strong);
+}
+
+.filter-sort-item.active {
+  background: var(--bg-wash-strong);
+  font-weight: 700;
+}
+
+.filter-sort-item .sort-arrow {
+  font-weight: 900;
+  font-size: 12px;
+  width: 14px;
+  text-align: center;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #000;
+  margin: 0;
+  border: 0;
+}
+
+.table-filter-search {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.table-filter-search input,
+.table-filter-search-input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--border);
+  padding: 4px 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  background: #fff;
+  color: #000;
+  outline: none;
+  border-radius: 0;
+}
+
+.table-filter-search input:focus,
+.table-filter-search-input:focus {
+  border-color: #000;
+  box-shadow: 1px 1px 0 #000;
+}
+
+.table-filter-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  background: var(--bg-wash);
+  border-bottom: 1px solid var(--border-light);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.table-filter-link {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.table-filter-link:hover {
+  color: #000;
+}
+
+.table-filter-list {
+  max-height: 130px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.table-filter-list::-webkit-scrollbar {
+  width: 5px;
+}
+.table-filter-list::-webkit-scrollbar-thumb {
+  background: #000;
+}
+.table-filter-list::-webkit-scrollbar-track {
+  background: var(--bg-wash);
+}
+
+.table-filter-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 3px 4px;
+  font-size: 10px;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  transition: background 0.08s;
+}
+
+.table-filter-item:hover {
+  background: var(--bg-wash);
+  border-color: var(--border-light);
+}
+
+.table-filter-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 13px;
+  height: 13px;
+  border: 1px solid #000;
+  background: #fff;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  margin: 0;
+  flex-shrink: 0;
+  border-radius: 0;
+}
+
+.table-filter-item input[type="checkbox"]:checked {
+  background: #000;
+}
+
+.table-filter-item input[type="checkbox"]:checked::after {
+  content: "✓";
+  color: #fff;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.table-filter-item .item-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-filter-item .item-count {
+  font-size: 9px;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.table-filter-empty {
+  padding: 10px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 10px;
+  font-style: italic;
+}
+
+.table-filter-footer {
+  padding: 6px 8px;
+  border-top: 1px solid #000;
+  background: var(--bg-wash-strong);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.table-filter-footer .btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 9px;
+}
+
 .data-table td {
   padding: 0.65rem 0.75rem;
   border-bottom: 1px solid var(--border-light);

@@ -734,10 +734,10 @@
       <!-- 8. DATA TABLES & LISTS -->
       <section id="tables" class="section-anchor">
         <h1 class="page-title">08. Data Tables & Lists</h1>
-        <p class="muted">Tables support sticky headers, hover highlights, single-line text truncation with ellipsis, and clickable row modals.</p>
+        <p class="muted">Tables support sticky headers, hover highlights, single-line text truncation with ellipsis, clickable row modals, and Excel-style column header dropdowns with Sort A → Z / Sort Z → A and scrollable checkbox filters.</p>
 
         <div class="demo-box">
-          <span class="demo-label">Data Table</span>
+          <span class="demo-label">Data Table with Column Header Filter Dropdowns</span>
           <div class="toolbar" style="margin-bottom:0.5rem">
             <div class="filter-bar">
               <input class="input-compact" placeholder="Search rows…" style="width:12rem" />
@@ -750,9 +750,129 @@
             <table class="data-table">
               <thead>
                 <tr>
-                  <th>Timestamp</th>
-                  <th>Channel</th>
-                  <th>Category</th>
+                  <th>
+                    <div class="th-content">
+                      <span class="th-title">Timestamp</span>
+                      <div class="dropdown table-filter-dropdown">
+                        <button type="button" class="th-filter-btn" data-menu-toggle aria-label="Filter Timestamp" title="Sort / Filter Timestamp" aria-haspopup="true">
+                          <svg class="th-filter-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 2h10L7 6.5V10l-2 1V6.5L1 2z"/></svg>
+                        </button>
+                        <div class="dropdown-menu table-filter-menu" hidden data-align="left">
+                          <div class="table-filter-header">
+                            <span>Filter:</span>
+                            <span class="col-name">Timestamp</span>
+                          </div>
+                          <div class="table-filter-sort">
+                            <button type="button" class="filter-sort-item" data-sort="asc"><span class="sort-arrow">↑</span> Sort Oldest → Newest</button>
+                            <button type="button" class="filter-sort-item" data-sort="desc"><span class="sort-arrow">↓</span> Sort Newest → Oldest</button>
+                            <button type="button" class="filter-sort-item" data-sort="clear"><span class="sort-arrow">✕</span> Default Order</button>
+                          </div>
+                          <div class="dropdown-divider"></div>
+                          <div class="table-filter-search">
+                            <input type="text" class="table-filter-search-input" placeholder="Search timestamps…">
+                          </div>
+                          <div class="table-filter-actions">
+                            <button type="button" class="table-filter-link" data-action="select-all">(Select All)</button>
+                            <button type="button" class="table-filter-link" data-action="clear-all">(Clear)</button>
+                          </div>
+                          <div class="table-filter-list" data-auto-populate="true"></div>
+                          <div class="table-filter-footer">
+                            <button type="button" class="btn-secondary btn-sm" data-action="reset">Clear</button>
+                            <button type="button" class="btn-primary btn-sm" data-action="apply">Apply</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="th-content">
+                      <span class="th-title">Channel</span>
+                      <div class="dropdown table-filter-dropdown">
+                        <button type="button" class="th-filter-btn" data-menu-toggle aria-label="Filter Channel" title="Sort / Filter Channel" aria-haspopup="true">
+                          <svg class="th-filter-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 2h10L7 6.5V10l-2 1V6.5L1 2z"/></svg>
+                        </button>
+                        <div class="dropdown-menu table-filter-menu" hidden data-align="left">
+                          <div class="table-filter-header">
+                            <span>Filter:</span>
+                            <span class="col-name">Channel</span>
+                          </div>
+                          <div class="table-filter-sort">
+                            <button type="button" class="filter-sort-item" data-sort="asc"><span class="sort-arrow">↑</span> Sort A → Z</button>
+                            <button type="button" class="filter-sort-item" data-sort="desc"><span class="sort-arrow">↓</span> Sort Z → A</button>
+                            <button type="button" class="filter-sort-item" data-sort="clear"><span class="sort-arrow">✕</span> Default Order</button>
+                          </div>
+                          <div class="dropdown-divider"></div>
+                          <div class="table-filter-search">
+                            <input type="text" class="table-filter-search-input" placeholder="Search channels…">
+                          </div>
+                          <div class="table-filter-actions">
+                            <button type="button" class="table-filter-link" data-action="select-all">(Select All)</button>
+                            <button type="button" class="table-filter-link" data-action="clear-all">(Clear)</button>
+                          </div>
+                          <div class="table-filter-list" data-auto-populate="true"></div>
+                          <div class="table-filter-footer">
+                            <button type="button" class="btn-secondary btn-sm" data-action="reset">Clear</button>
+                            <button type="button" class="btn-primary btn-sm" data-action="apply">Apply</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="th-content">
+                      <span class="th-title">Category</span>
+                      <div class="dropdown table-filter-dropdown">
+                        <button type="button" class="th-filter-btn" data-menu-toggle aria-label="Filter Category" title="Sort / Filter Category" aria-haspopup="true">
+                          <svg class="th-filter-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 2h10L7 6.5V10l-2 1V6.5L1 2z"/></svg>
+                        </button>
+                        <div class="dropdown-menu table-filter-menu" hidden data-align="left">
+                          <div class="table-filter-header">
+                            <span>Filter:</span>
+                            <span class="col-name">Category</span>
+                          </div>
+                          <div class="table-filter-sort">
+                            <button type="button" class="filter-sort-item" data-sort="asc"><span class="sort-arrow">↑</span> Sort A → Z</button>
+                            <button type="button" class="filter-sort-item" data-sort="desc"><span class="sort-arrow">↓</span> Sort Z → A</button>
+                            <button type="button" class="filter-sort-item" data-sort="clear"><span class="sort-arrow">✕</span> Default Order</button>
+                          </div>
+                          <div class="dropdown-divider"></div>
+                          <div class="table-filter-search">
+                            <input type="text" class="table-filter-search-input" placeholder="Search categories…">
+                          </div>
+                          <div class="table-filter-actions">
+                            <button type="button" class="table-filter-link" data-action="select-all">(Select All)</button>
+                            <button type="button" class="table-filter-link" data-action="clear-all">(Clear)</button>
+                          </div>
+                          <div class="table-filter-list">
+                            <label class="table-filter-item">
+                              <input type="checkbox" value="Conflict" checked />
+                              <span class="item-text">Conflict</span>
+                              <span class="item-count">2</span>
+                            </label>
+                            <label class="table-filter-item">
+                              <input type="checkbox" value="Finance" checked />
+                              <span class="item-text">Finance</span>
+                              <span class="item-count">2</span>
+                            </label>
+                            <label class="table-filter-item">
+                              <input type="checkbox" value="Infrastructure" checked />
+                              <span class="item-text">Infrastructure</span>
+                              <span class="item-count">1</span>
+                            </label>
+                            <label class="table-filter-item">
+                              <input type="checkbox" value="Tech" checked />
+                              <span class="item-text">Tech</span>
+                              <span class="item-count">1</span>
+                            </label>
+                          </div>
+                          <div class="table-filter-footer">
+                            <button type="button" class="btn-secondary btn-sm" data-action="reset">Clear</button>
+                            <button type="button" class="btn-primary btn-sm" data-action="apply">Apply</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </th>
                   <th>Message Preview</th>
                   <th style="text-align:right">Actions</th>
                 </tr>
@@ -776,7 +896,7 @@
                     <button class="btn-ghost btn-sm">Details</button>
                   </td>
                 </tr>
-                <tr>
+                <tr class="clickable" onclick="testRowClick('Market Analysis', 'Market analysis report uploaded (PDF 4.2 MB).')">
                   <td class="mono muted" style="font-size:11px; white-space:nowrap">08/17 10:38</td>
                   <td><strong>@crypto_insider</strong></td>
                   <td><span class="status-pill status-warn">Finance</span></td>
@@ -785,14 +905,41 @@
                     <button class="btn-ghost btn-sm">Details</button>
                   </td>
                 </tr>
+                <tr class="clickable" onclick="testRowClick('Cluster Alert', 'Node failover initiated in secondary datacentre us-east-2.')">
+                  <td class="mono muted" style="font-size:11px; white-space:nowrap">08/17 10:30</td>
+                  <td><strong>@netops_core</strong></td>
+                  <td><span class="status-pill status-info">Infrastructure</span></td>
+                  <td class="truncate" style="max-width:24rem"><span class="lang-badge">EN</span> Node failover initiated in secondary datacentre us-east-2.</td>
+                  <td style="text-align:right; white-space:nowrap">
+                    <button class="btn-ghost btn-sm">Details</button>
+                  </td>
+                </tr>
+                <tr class="clickable" onclick="testRowClick('Border Watch', 'Evacuation convoys moving along western transit lines.')">
+                  <td class="mono muted" style="font-size:11px; white-space:nowrap">08/17 10:15</td>
+                  <td><strong>@intel_feed</strong></td>
+                  <td><span class="status-pill status-info">Conflict</span></td>
+                  <td class="truncate" style="max-width:24rem"><span class="lang-badge">EN</span> Evacuation convoys moving along western transit lines.</td>
+                  <td style="text-align:right; white-space:nowrap">
+                    <button class="btn-ghost btn-sm">Details</button>
+                  </td>
+                </tr>
+                <tr class="clickable" onclick="testRowClick('Liquidity Pulse', 'Arbitrage volume surged across decentralized liquidity pairs.')">
+                  <td class="mono muted" style="font-size:11px; white-space:nowrap">08/17 09:50</td>
+                  <td><strong>@crypto_insider</strong></td>
+                  <td><span class="status-pill status-warn">Finance</span></td>
+                  <td class="truncate" style="max-width:24rem">Arbitrage volume surged across decentralized liquidity pairs.</td>
+                  <td style="text-align:right; white-space:nowrap">
+                    <button class="btn-ghost btn-sm">Details</button>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
           <div class="footer-count">
-            <span>Showing 3 of 49,204 records</span>
+            <span>Showing 6 of 6 records</span>
             <div class="row">
               <button class="btn-secondary btn-sm" disabled>Prev</button>
-              <span class="mono">1 / 1640</span>
+              <span class="mono">1 / 1</span>
               <button class="btn-secondary btn-sm">Next</button>
             </div>
           </div>
@@ -805,14 +952,59 @@
     &lt;thead&gt;
       &lt;tr&gt;
         &lt;th&gt;Timestamp&lt;/th&gt;
-        &lt;th&gt;Channel&lt;/th&gt;
+        &lt;th&gt;
+          &lt;div class="th-content"&gt;
+            &lt;span class="th-title"&gt;Category&lt;/span&gt;
+            &lt;!-- Column Header Dropdown (Excel-Style Filter) --&gt;
+            &lt;div class="dropdown table-filter-dropdown"&gt;
+              &lt;button type="button" class="th-filter-btn" data-menu-toggle aria-label="Filter Category"&gt;
+                &lt;svg class="th-filter-icon" viewBox="0 0 12 12"&gt;&lt;path d="M1 2h10L7 6.5V10l-2 1V6.5L1 2z"/&gt;&lt;/svg&gt;
+              &lt;/button&gt;
+              &lt;div class="dropdown-menu table-filter-menu" hidden data-align="left"&gt;
+                &lt;div class="table-filter-header"&gt;
+                  &lt;span&gt;Filter:&lt;/span&gt; &lt;span class="col-name"&gt;Category&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="table-filter-sort"&gt;
+                  &lt;button class="filter-sort-item" data-sort="asc"&gt;&lt;span class="sort-arrow"&gt;↑&lt;/span&gt; Sort A → Z&lt;/button&gt;
+                  &lt;button class="filter-sort-item" data-sort="desc"&gt;&lt;span class="sort-arrow"&gt;↓&lt;/span&gt; Sort Z → A&lt;/button&gt;
+                  &lt;button class="filter-sort-item" data-sort="clear"&gt;&lt;span class="sort-arrow"&gt;✕&lt;/span&gt; Default Order&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class="dropdown-divider"&gt;&lt;/div&gt;
+                &lt;div class="table-filter-search"&gt;
+                  &lt;input type="text" class="table-filter-search-input" placeholder="Search values…"&gt;
+                &lt;/div&gt;
+                &lt;div class="table-filter-actions"&gt;
+                  &lt;button type="button" class="table-filter-link" data-action="select-all"&gt;(Select All)&lt;/button&gt;
+                  &lt;button type="button" class="table-filter-link" data-action="clear-all"&gt;(Clear)&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;!-- Scrollable list of items --&gt;
+                &lt;div class="table-filter-list"&gt;
+                  &lt;label class="table-filter-item"&gt;
+                    &lt;input type="checkbox" value="Conflict" checked /&gt;
+                    &lt;span class="item-text"&gt;Conflict&lt;/span&gt;
+                    &lt;span class="item-count"&gt;2&lt;/span&gt;
+                  &lt;/label&gt;
+                  &lt;label class="table-filter-item"&gt;
+                    &lt;input type="checkbox" value="Tech" checked /&gt;
+                    &lt;span class="item-text"&gt;Tech&lt;/span&gt;
+                    &lt;span class="item-count"&gt;1&lt;/span&gt;
+                  &lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class="table-filter-footer"&gt;
+                  &lt;button type="button" class="btn-secondary btn-sm" data-action="reset"&gt;Clear&lt;/button&gt;
+                  &lt;button type="button" class="btn-primary btn-sm" data-action="apply"&gt;Apply&lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/th&gt;
         &lt;th&gt;Text Preview&lt;/th&gt;
       &lt;/tr&gt;
     &lt;/thead&gt;
     &lt;tbody&gt;
       &lt;tr class="clickable"&gt;
         &lt;td class="mono muted"&gt;10:45&lt;/td&gt;
-        &lt;td&gt;&lt;strong&gt;@channel&lt;/strong&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;span class="status-pill status-info"&gt;Conflict&lt;/span&gt;&lt;/td&gt;
         &lt;td class="truncate" style="max-width:24rem"&gt;Long truncated message text...&lt;/td&gt;
       &lt;/tr&gt;
     &lt;/tbody&gt;
